@@ -37,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/animal_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -67,7 +66,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/berry_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -128,7 +125,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -159,7 +155,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/fungi_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -189,7 +184,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -220,7 +214,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/herb_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -250,7 +243,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -281,7 +273,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/magic_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -311,7 +302,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -342,7 +332,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/mineral_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -372,7 +361,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -403,7 +391,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/root_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -433,7 +420,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <LinearLayout
@@ -464,7 +450,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-            <Button
                 android:id="@+id/solution_minus10"
                 android:text="-10"
                 android:layout_width="54dp"
@@ -494,7 +479,6 @@
                 android:text="+10"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content" />
-            <Button
         </LinearLayout>
 
         <!-- Potion selector and add button -->
