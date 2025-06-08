@@ -92,6 +92,17 @@ namespace Potionapp_Mobile
                 { "solution", FindViewById<EditText>(Resource.Id.solution_amount)! }
             };
 
+            var increments = new[] { 1, 5, 10, 100 };
+            foreach (var name in ingredientFields.Keys)
+            {
+                foreach (var inc in increments)
+                {
+                    var plusId = Resources.GetIdentifier($"{name}_plus{inc}", "id", PackageName);
+                    var minusId = Resources.GetIdentifier($"{name}_minus{inc}", "id", PackageName);
+                    FindViewById<Button>(plusId)?.Click += (s, e) => AdjustIngredient(name, inc);
+                    FindViewById<Button>(minusId)?.Click += (s, e) => AdjustIngredient(name, -inc);
+                }
+                
             requirementViews = new Dictionary<string, TextView>
             {
                 { "animal", FindViewById<TextView>(Resource.Id.animal_needed)! },
@@ -257,6 +268,17 @@ namespace Potionapp_Mobile
         {
             base.OnPause();
             SaveAllValues();
+        }
+
+        void AdjustIngredient(string name, int delta)
+        {
+            if (ingredientFields!.TryGetValue(name, out var field))
+            {
+                if (!int.TryParse(field.Text, out int val))
+                    val = 0;
+                val = Math.Max(0, val + delta);
+                field.Text = val.ToString();
+            }
         }
     }
 }

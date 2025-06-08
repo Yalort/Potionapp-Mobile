@@ -29,6 +29,51 @@
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/animal_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/animal_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -49,6 +94,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/berry_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/berry_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,6 +161,51 @@
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/fungi_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/fungi_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -91,6 +226,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/herb_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/herb_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,6 +293,51 @@
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/magic_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/magic_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -133,6 +358,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/mineral_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/mineral_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,6 +425,51 @@
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/root_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/root_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -175,6 +490,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 (0)" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/solution_minus1"
+                android:text="-1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_plus1"
+                android:text="+1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_minus5"
+                android:text="-5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_plus5"
+                android:text="+5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_minus10"
+                android:text="-10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_plus10"
+                android:text="+10"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_minus100"
+                android:text="-100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/solution_plus100"
+                android:text="+100"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <!-- Potion selector and add button -->
