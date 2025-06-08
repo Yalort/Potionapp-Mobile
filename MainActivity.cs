@@ -2,6 +2,8 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using Android.Views;
+using AndroidX.DrawerLayout.Widget;
+using AndroidX.Core.View;
 using System.Collections.Generic;
 using System.Linq;
 namespace Potionapp_Mobile
@@ -75,8 +77,21 @@ namespace Potionapp_Mobile
 
             SetContentView(Resource.Layout.main_tabs);
 
+            var drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout)!;
+            var drawerList = FindViewById<ListView>(Resource.Id.drawer_list)!;
+
             var tabHost = FindViewById<TabHost>(Android.Resource.Id.TabHost)!;
             tabHost.Setup();
+
+            drawerList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1,
+                new[] { "Potions", "Recipes", "Ingredients" });
+            drawerList.ItemClick += (s, e) =>
+            {
+                tabHost.CurrentTab = e.Position;
+                drawerLayout.CloseDrawer(GravityCompat.Start);
+            };
+            FindViewById<Button>(Resource.Id.open_drawer_button)!.Click += (s, e) =>
+                drawerLayout.OpenDrawer(GravityCompat.Start);
 
             tabHost.AddTab(tabHost.NewTabSpec("potions").SetIndicator("Potions").SetContent(Resource.Id.tab_potions));
             tabHost.AddTab(tabHost.NewTabSpec("recipes").SetIndicator("Recipes").SetContent(Resource.Id.tab_recipes));
@@ -154,7 +169,7 @@ namespace Potionapp_Mobile
 
                 var addButton = FindViewById<Button>(Resource.Id.add_potion_button)!;
                 var confirmButton = FindViewById<Button>(Resource.Id.confirm_button)!;
-                var listView = FindViewById<ListView>(Resource.Id.selected_potions_list)!;
+                var listView = FindViewById<ListView>(Resource.Id.potion_queue_list)!;
 
                 selectedPotions = new List<string>();
                 listAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, selectedPotions);
