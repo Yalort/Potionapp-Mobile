@@ -15,4 +15,8 @@
     -->
     <TrimMode>full</TrimMode>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.DrawerLayout" Version="1.1.1.3" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.12.0.1" />
+  </ItemGroup>
 </Project>
