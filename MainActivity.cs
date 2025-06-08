@@ -1,3 +1,9 @@
+using Android.App;
+using Android.OS;
+using Android.Widget;
+using Android.Views;
+using System.Collections.Generic;
+using System.Linq;
 namespace Potionapp_Mobile
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
@@ -295,4 +301,5 @@ namespace Potionapp_Mobile
             }
         }
     }
+}
 }
