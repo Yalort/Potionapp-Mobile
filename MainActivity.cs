@@ -12,8 +12,37 @@ namespace Potionapp_Mobile
         };
 
         Dictionary<string, EditText>? ingredientFields;
+        Dictionary<string, TextView>? requirementViews;
         List<string>? selectedPotions;
         ArrayAdapter<string>? listAdapter;
+
+        void UpdateRequirementsDisplay()
+        {
+            if (ingredientFields == null || requirementViews == null || selectedPotions == null)
+                return;
+
+            var totals = new Dictionary<string, int>();
+            foreach (var potion in selectedPotions)
+            {
+                if (!potionRequirements.TryGetValue(potion, out var reqs))
+                    continue;
+                foreach (var kvp in reqs)
+                {
+                    totals[kvp.Key] = totals.TryGetValue(kvp.Key, out var v) ? v + kvp.Value : kvp.Value;
+                }
+            }
+
+            foreach (var kvp in requirementViews)
+            {
+                var required = totals.TryGetValue(kvp.Key, out var r) ? r : 0;
+                int stock = 0;
+                if (ingredientFields.TryGetValue(kvp.Key, out var field) && int.TryParse(field.Text, out var val))
+                    stock = val;
+                var remaining = stock - required;
+                kvp.Value.Text = $"{required} ({remaining})";
+                kvp.Value.SetTextColor(required > stock ? Android.Graphics.Color.Red : Android.Graphics.Color.Black);
+            }
+        }
         void SaveAllValues()
         {
             if (ingredientFields == null)
@@ -47,6 +76,18 @@ namespace Potionapp_Mobile
                 { "solution", FindViewById<EditText>(Resource.Id.solution_amount)! }
             };
 
+            requirementViews = new Dictionary<string, TextView>
+            {
+                { "animal", FindViewById<TextView>(Resource.Id.animal_needed)! },
+                { "berry", FindViewById<TextView>(Resource.Id.berry_needed)! },
+                { "fungi", FindViewById<TextView>(Resource.Id.fungi_needed)! },
+                { "herb", FindViewById<TextView>(Resource.Id.herb_needed)! },
+                { "magic", FindViewById<TextView>(Resource.Id.magic_needed)! },
+                { "mineral", FindViewById<TextView>(Resource.Id.mineral_needed)! },
+                { "root", FindViewById<TextView>(Resource.Id.root_needed)! },
+                { "solution", FindViewById<TextView>(Resource.Id.solution_needed)! }
+            };
+
             foreach (var kvp in ingredientFields)
             {
                 var stored = IngredientStorage.GetValue(this, kvp.Key);
@@ -56,6 +97,7 @@ namespace Potionapp_Mobile
                 {
                     if (int.TryParse(kvp.Value.Text, out int val))
                         IngredientStorage.SaveValue(this, kvp.Key, val);
+                    UpdateRequirementsDisplay();
                 };
             }
 
@@ -71,6 +113,8 @@ namespace Potionapp_Mobile
             listAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, selectedPotions);
             listView.Adapter = listAdapter;
 
+            UpdateRequirementsDisplay();
+
             addButton.Click += (s, e) =>
             {
                 var selected = potionSpinner.SelectedItem?.ToString();
@@ -78,6 +122,7 @@ namespace Potionapp_Mobile
                 {
                     selectedPotions!.Add(selected);
                     listAdapter!.NotifyDataSetChanged();
+                    UpdateRequirementsDisplay();
                 }
             };
 
@@ -104,6 +149,7 @@ namespace Potionapp_Mobile
                 selectedPotions.Clear();
                 listAdapter!.NotifyDataSetChanged();
                 SaveAllValues();
+                UpdateRequirementsDisplay();
             };
         }
 
