@@ -14,6 +14,19 @@ namespace Potionapp_Mobile
         Dictionary<string, EditText>? ingredientFields;
         List<string>? selectedPotions;
         ArrayAdapter<string>? listAdapter;
+        void SaveAllValues()
+        {
+            if (ingredientFields == null)
+                return;
+
+            foreach (var kvp in ingredientFields)
+            {
+                if (int.TryParse(kvp.Value.Text, out int val))
+                {
+                    IngredientStorage.SaveValue(this, kvp.Key, val);
+                }
+            }
+        }
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
@@ -33,6 +46,18 @@ namespace Potionapp_Mobile
                 { "root", FindViewById<EditText>(Resource.Id.root_amount)! },
                 { "solution", FindViewById<EditText>(Resource.Id.solution_amount)! }
             };
+
+            foreach (var kvp in ingredientFields)
+            {
+                var stored = IngredientStorage.GetValue(this, kvp.Key);
+                kvp.Value.Text = stored.ToString();
+
+                kvp.Value.TextChanged += (s, e) =>
+                {
+                    if (int.TryParse(kvp.Value.Text, out int val))
+                        IngredientStorage.SaveValue(this, kvp.Key, val);
+                };
+            }
 
             var potionSpinner = FindViewById<Spinner>(Resource.Id.potion_spinner)!;
             var potionNames = potionRequirements.Keys.ToList();
@@ -78,7 +103,14 @@ namespace Potionapp_Mobile
 
                 selectedPotions.Clear();
                 listAdapter!.NotifyDataSetChanged();
+                SaveAllValues();
             };
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            SaveAllValues();
         }
     }
 }
