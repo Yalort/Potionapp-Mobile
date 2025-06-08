@@ -84,7 +84,7 @@ namespace Potionapp_Mobile
             tabHost.Setup();
 
             drawerList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1,
-                new[] { "Potions", "Recipes", "Ingredients" });
+                new[] { "Brewing", "Ingredients", "Recipes" });
             drawerList.ItemClick += (s, e) =>
             {
                 tabHost.CurrentTab = e.Position;
@@ -93,9 +93,9 @@ namespace Potionapp_Mobile
             FindViewById<Button>(Resource.Id.open_drawer_button)!.Click += (s, e) =>
                 drawerLayout.OpenDrawer(GravityCompat.Start);
 
-            tabHost.AddTab(tabHost.NewTabSpec("potions").SetIndicator("Potions").SetContent(Resource.Id.tab_potions));
-            tabHost.AddTab(tabHost.NewTabSpec("recipes").SetIndicator("Recipes").SetContent(Resource.Id.tab_recipes));
+            tabHost.AddTab(tabHost.NewTabSpec("brewing").SetIndicator("Brewing").SetContent(Resource.Id.tab_potions));
             tabHost.AddTab(tabHost.NewTabSpec("ingredients").SetIndicator("Ingredients").SetContent(Resource.Id.tab_ingredients));
+            tabHost.AddTab(tabHost.NewTabSpec("recipes").SetIndicator("Recipes").SetContent(Resource.Id.tab_recipes));
 
             LayoutInflater.Inflate(
                 Resource.Layout.activity_main,
@@ -122,7 +122,7 @@ namespace Potionapp_Mobile
                 { "solution", FindViewById<EditText>(Resource.Id.solution_amount)! }
             };
 
-            var increments = new[] { 1, 5, 10, 100 };
+            var increments = new[] { 1, 5, 10 };
             foreach (var name in ingredientFields.Keys)
             {
                 foreach (var inc in increments)
