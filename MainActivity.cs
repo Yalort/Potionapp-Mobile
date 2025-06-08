@@ -122,8 +122,8 @@ namespace Potionapp_Mobile
                     if (minusBtn != null)
                         minusBtn.Click += (s, e) => AdjustIngredient(name, -inc);
                 }
-                
-            requirementViews = new Dictionary<string, TextView>
+
+                requirementViews = new Dictionary<string, TextView>
             {
                 { "animal", FindViewById<TextView>(Resource.Id.animal_needed)! },
                 { "berry", FindViewById<TextView>(Resource.Id.berry_needed)! },
@@ -135,153 +135,154 @@ namespace Potionapp_Mobile
                 { "solution", FindViewById<TextView>(Resource.Id.solution_needed)! }
             };
 
-            foreach (var kvp in ingredientFields)
-            {
-                var stored = IngredientStorage.GetValue(this, kvp.Key);
-                kvp.Value.Text = stored.ToString();
-
-                kvp.Value.TextChanged += (s, e) =>
+                foreach (var kvp in ingredientFields)
                 {
-                    if (int.TryParse(kvp.Value.Text, out int val))
-                        IngredientStorage.SaveValue(this, kvp.Key, val);
-                    UpdateRequirementsDisplay();
-                };
-            }
+                    var stored = IngredientStorage.GetValue(this, kvp.Key);
+                    kvp.Value.Text = stored.ToString();
 
-            var potionSpinner = FindViewById<Spinner>(Resource.Id.potion_spinner)!;
-            var potionNames = potionRequirements.Keys.ToList();
-            potionSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, potionNames);
-
-            var addButton = FindViewById<Button>(Resource.Id.add_potion_button)!;
-            var confirmButton = FindViewById<Button>(Resource.Id.confirm_button)!;
-            var listView = FindViewById<ListView>(Resource.Id.selected_potions_list)!;
-
-            selectedPotions = new List<string>();
-            listAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, selectedPotions);
-            listView.Adapter = listAdapter;
-
-            UpdateRequirementsDisplay();
-
-            addButton.Click += (s, e) =>
-            {
-                var selected = potionSpinner.SelectedItem?.ToString();
-                if (!string.IsNullOrEmpty(selected))
-                {
-                    selectedPotions!.Add(selected);
-                    listAdapter!.NotifyDataSetChanged();
-                    UpdateRequirementsDisplay();
-                }
-            };
-
-            confirmButton.Click += (s, e) =>
-            {
-                foreach (var potion in selectedPotions!.ToList())
-                {
-                    if (!potionRequirements.TryGetValue(potion, out var reqs))
-                        continue;
-
-                    foreach (var kvp in reqs)
+                    kvp.Value.TextChanged += (s, e) =>
                     {
-                        if (ingredientFields!.TryGetValue(kvp.Key, out var field))
+                        if (int.TryParse(kvp.Value.Text, out int val))
+                            IngredientStorage.SaveValue(this, kvp.Key, val);
+                        UpdateRequirementsDisplay();
+                    };
+                }
+
+                var potionSpinner = FindViewById<Spinner>(Resource.Id.potion_spinner)!;
+                var potionNames = potionRequirements.Keys.ToList();
+                potionSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, potionNames);
+
+                var addButton = FindViewById<Button>(Resource.Id.add_potion_button)!;
+                var confirmButton = FindViewById<Button>(Resource.Id.confirm_button)!;
+                var listView = FindViewById<ListView>(Resource.Id.selected_potions_list)!;
+
+                selectedPotions = new List<string>();
+                listAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, selectedPotions);
+                listView.Adapter = listAdapter;
+
+                UpdateRequirementsDisplay();
+
+                addButton.Click += (s, e) =>
+                {
+                    var selected = potionSpinner.SelectedItem?.ToString();
+                    if (!string.IsNullOrEmpty(selected))
+                    {
+                        selectedPotions!.Add(selected);
+                        listAdapter!.NotifyDataSetChanged();
+                        UpdateRequirementsDisplay();
+                    }
+                };
+
+                confirmButton.Click += (s, e) =>
+                {
+                    foreach (var potion in selectedPotions!.ToList())
+                    {
+                        if (!potionRequirements.TryGetValue(potion, out var reqs))
+                            continue;
+
+                        foreach (var kvp in reqs)
                         {
-                            if (int.TryParse(field.Text, out int val))
+                            if (ingredientFields!.TryGetValue(kvp.Key, out var field))
                             {
-                                val = Math.Max(0, val - kvp.Value);
-                                field.Text = val.ToString();
+                                if (int.TryParse(field.Text, out int val))
+                                {
+                                    val = Math.Max(0, val - kvp.Value);
+                                    field.Text = val.ToString();
+                                }
                             }
+                        }
+
+                        if (potionSpecialRequirements.TryGetValue(potion, out var specials))
+                        {
+                            foreach (var sp in specials)
+                                specialIngredientsStock.Remove(sp);
+                            specialAdapter?.NotifyDataSetChanged();
                         }
                     }
 
-                    if (potionSpecialRequirements.TryGetValue(potion, out var specials))
+                    selectedPotions.Clear();
+                    listAdapter!.NotifyDataSetChanged();
+                    SaveAllValues();
+                    UpdateRequirementsDisplay();
+                };
+
+                // Recipes tab setup
+                recipeNames = potionRequirements.Keys.ToList();
+                var recipesList = FindViewById<ListView>(Resource.Id.recipes_list)!;
+                recipesAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, recipeNames);
+                recipesList.Adapter = recipesAdapter;
+                recipesList.ChoiceMode = ChoiceMode.Single;
+
+                var addRecipeBtn = FindViewById<Button>(Resource.Id.add_recipe_button)!;
+                var removeRecipeBtn = FindViewById<Button>(Resource.Id.remove_recipe_button)!;
+
+                addRecipeBtn.Click += (s, e) =>
+                {
+                    var name = FindViewById<EditText>(Resource.Id.recipe_name)!.Text;
+                    if (string.IsNullOrWhiteSpace(name) || potionRequirements.ContainsKey(name))
+                        return;
+
+                    var reqs = new Dictionary<string, int>();
+                    foreach (var key in ingredientFields!.Keys)
                     {
-                        foreach (var sp in specials)
-                            specialIngredientsStock.Remove(sp);
-                        specialAdapter?.NotifyDataSetChanged();
+                        var id = Resources.GetIdentifier($"recipe_{key}", "id", PackageName);
+                        var field = FindViewById<EditText>(id)!;
+                        if (int.TryParse(field.Text, out int val) && val > 0)
+                            reqs[key] = val;
                     }
-                }
 
-                selectedPotions.Clear();
-                listAdapter!.NotifyDataSetChanged();
-                SaveAllValues();
-                UpdateRequirementsDisplay();
-            };
+                    potionRequirements[name] = reqs;
+                    recipeNames!.Add(name);
 
-            // Recipes tab setup
-            recipeNames = potionRequirements.Keys.ToList();
-            var recipesList = FindViewById<ListView>(Resource.Id.recipes_list)!;
-            recipesAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, recipeNames);
-            recipesList.Adapter = recipesAdapter;
-            recipesList.ChoiceMode = ChoiceMode.Single;
+                    var specialsText = FindViewById<EditText>(Resource.Id.recipe_special)!.Text;
+                    if (!string.IsNullOrWhiteSpace(specialsText))
+                        potionSpecialRequirements[name] = specialsText.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
 
-            var addRecipeBtn = FindViewById<Button>(Resource.Id.add_recipe_button)!;
-            var removeRecipeBtn = FindViewById<Button>(Resource.Id.remove_recipe_button)!;
-
-            addRecipeBtn.Click += (s, e) =>
-            {
-                var name = FindViewById<EditText>(Resource.Id.recipe_name)!.Text;
-                if (string.IsNullOrWhiteSpace(name) || potionRequirements.ContainsKey(name))
-                    return;
-
-                var reqs = new Dictionary<string, int>();
-                foreach (var key in ingredientFields!.Keys)
-                {
-                    var id = Resources.GetIdentifier($"recipe_{key}", "id", PackageName);
-                    var field = FindViewById<EditText>(id)!;
-                    if (int.TryParse(field.Text, out int val) && val > 0)
-                        reqs[key] = val;
-                }
-
-                potionRequirements[name] = reqs;
-                recipeNames!.Add(name);
-
-                var specialsText = FindViewById<EditText>(Resource.Id.recipe_special)!.Text;
-                if (!string.IsNullOrWhiteSpace(specialsText))
-                    potionSpecialRequirements[name] = specialsText.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
-
-                recipesAdapter!.NotifyDataSetChanged();
-                potionSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, potionRequirements.Keys.ToList());
-            };
-
-            removeRecipeBtn.Click += (s, e) =>
-            {
-                if (recipesList.CheckedItemPosition >= 0 && recipesList.CheckedItemPosition < recipeNames!.Count)
-                {
-                    var name = recipeNames[recipesList.CheckedItemPosition];
-                    recipeNames.RemoveAt(recipesList.CheckedItemPosition);
-                    potionRequirements.Remove(name);
-                    potionSpecialRequirements.Remove(name);
                     recipesAdapter!.NotifyDataSetChanged();
                     potionSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, potionRequirements.Keys.ToList());
-                }
-            };
+                };
 
-            // Special ingredients tab setup
-            var specialList = FindViewById<ListView>(Resource.Id.special_list)!;
-            specialAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, specialIngredientsStock);
-            specialList.Adapter = specialAdapter;
-            specialList.ChoiceMode = ChoiceMode.Single;
-
-            var addSpecialBtn = FindViewById<Button>(Resource.Id.add_special_button)!;
-            var removeSpecialBtn = FindViewById<Button>(Resource.Id.remove_special_button)!;
-
-            addSpecialBtn.Click += (s, e) =>
-            {
-                var name = FindViewById<EditText>(Resource.Id.special_name)!.Text;
-                if (!string.IsNullOrWhiteSpace(name))
+                removeRecipeBtn.Click += (s, e) =>
                 {
-                    specialIngredientsStock.Add(name.Trim());
-                    specialAdapter!.NotifyDataSetChanged();
-                }
-            };
+                    if (recipesList.CheckedItemPosition >= 0 && recipesList.CheckedItemPosition < recipeNames!.Count)
+                    {
+                        var name = recipeNames[recipesList.CheckedItemPosition];
+                        recipeNames.RemoveAt(recipesList.CheckedItemPosition);
+                        potionRequirements.Remove(name);
+                        potionSpecialRequirements.Remove(name);
+                        recipesAdapter!.NotifyDataSetChanged();
+                        potionSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, potionRequirements.Keys.ToList());
+                    }
+                };
 
-            removeSpecialBtn.Click += (s, e) =>
-            {
-                if (specialList.CheckedItemPosition >= 0 && specialList.CheckedItemPosition < specialIngredientsStock.Count)
+                // Special ingredients tab setup
+                var specialList = FindViewById<ListView>(Resource.Id.special_list)!;
+                specialAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, specialIngredientsStock);
+                specialList.Adapter = specialAdapter;
+                specialList.ChoiceMode = ChoiceMode.Single;
+
+                var addSpecialBtn = FindViewById<Button>(Resource.Id.add_special_button)!;
+                var removeSpecialBtn = FindViewById<Button>(Resource.Id.remove_special_button)!;
+
+                addSpecialBtn.Click += (s, e) =>
                 {
-                    specialIngredientsStock.RemoveAt(specialList.CheckedItemPosition);
-                    specialAdapter!.NotifyDataSetChanged();
-                }
-            };
+                    var name = FindViewById<EditText>(Resource.Id.special_name)!.Text;
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        specialIngredientsStock.Add(name.Trim());
+                        specialAdapter!.NotifyDataSetChanged();
+                    }
+                };
+
+                removeSpecialBtn.Click += (s, e) =>
+                {
+                    if (specialList.CheckedItemPosition >= 0 && specialList.CheckedItemPosition < specialIngredientsStock.Count)
+                    {
+                        specialIngredientsStock.RemoveAt(specialList.CheckedItemPosition);
+                        specialAdapter!.NotifyDataSetChanged();
+                    }
+                };
+            }
         }
 
         protected override void OnPause()
@@ -301,5 +302,4 @@ namespace Potionapp_Mobile
             }
         }
     }
-}
 }
