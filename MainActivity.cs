@@ -76,9 +76,18 @@ namespace Potionapp_Mobile
             tabHost.AddTab(tabHost.NewTabSpec("recipes").SetIndicator("Recipes").SetContent(Resource.Id.tab_recipes));
             tabHost.AddTab(tabHost.NewTabSpec("ingredients").SetIndicator("Ingredients").SetContent(Resource.Id.tab_ingredients));
 
-            LayoutInflater.Inflate(Resource.Layout.activity_main, tabHost.TabContentView.FindViewById(Resource.Id.tab_potions), true);
-            LayoutInflater.Inflate(Resource.Layout.recipes_tab, tabHost.TabContentView.FindViewById(Resource.Id.tab_recipes), true);
-            LayoutInflater.Inflate(Resource.Layout.ingredients_tab, tabHost.TabContentView.FindViewById(Resource.Id.tab_ingredients), true);
+            LayoutInflater.Inflate(
+                Resource.Layout.activity_main,
+                tabHost.TabContentView.FindViewById<LinearLayout>(Resource.Id.tab_potions),
+                true);
+            LayoutInflater.Inflate(
+                Resource.Layout.recipes_tab,
+                tabHost.TabContentView.FindViewById<LinearLayout>(Resource.Id.tab_recipes),
+                true);
+            LayoutInflater.Inflate(
+                Resource.Layout.ingredients_tab,
+                tabHost.TabContentView.FindViewById<LinearLayout>(Resource.Id.tab_ingredients),
+                true);
 
             ingredientFields = new Dictionary<string, EditText>
             {
@@ -99,8 +108,13 @@ namespace Potionapp_Mobile
                 {
                     var plusId = Resources.GetIdentifier($"{name}_plus{inc}", "id", PackageName);
                     var minusId = Resources.GetIdentifier($"{name}_minus{inc}", "id", PackageName);
-                    FindViewById<Button>(plusId)?.Click += (s, e) => AdjustIngredient(name, inc);
-                    FindViewById<Button>(minusId)?.Click += (s, e) => AdjustIngredient(name, -inc);
+                    var plusBtn = FindViewById<Button>(plusId);
+                    if (plusBtn != null)
+                        plusBtn.Click += (s, e) => AdjustIngredient(name, inc);
+
+                    var minusBtn = FindViewById<Button>(minusId);
+                    if (minusBtn != null)
+                        minusBtn.Click += (s, e) => AdjustIngredient(name, -inc);
                 }
                 
             requirementViews = new Dictionary<string, TextView>
