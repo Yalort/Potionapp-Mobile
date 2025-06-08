@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/recipe_name"
+            android:hint="Recipe Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Ingredient fields for recipe -->
+        <EditText
+            android:id="@+id/recipe_animal"
+            android:hint="Animal amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_berry"
+            android:hint="Berry amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_fungi"
+            android:hint="Fungi amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_herb"
+            android:hint="Herb amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_magic"
+            android:hint="Magic amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_mineral"
+            android:hint="Mineral amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_root"
+            android:hint="Root amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/recipe_solution"
+            android:hint="Solution amount"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/recipe_special"
+            android:hint="Special ingredients (comma separated)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/add_recipe_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Recipe" />
+
+        <ListView
+            android:id="@+id/recipes_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        <Button
+            android:id="@+id/remove_recipe_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove Selected" />
+    </LinearLayout>
+</ScrollView>

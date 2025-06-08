@@ -23,6 +23,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/animal_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -84,6 +89,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/berry_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -145,6 +155,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/fungi_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -206,6 +221,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/herb_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -267,6 +287,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/magic_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -328,6 +353,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/mineral_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -389,6 +419,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/root_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -450,6 +485,11 @@
                 android:inputType="number"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/solution_needed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 (0)" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
